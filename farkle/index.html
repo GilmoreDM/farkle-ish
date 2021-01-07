@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>This is my page</title>
+		<script type="text/javascript" src="gameplay.js"></script>
+		<script type="text/javascript" src="scoring.js"></script>
+		<style>
+			textarea {
+				background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+				background-size: 100% 2rem;
+				border: 1px solid #CCC;
+				width: 100px;
+				height: 400px;
+				line-height: 1rem;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1" width="400px">
+			<tr>
+				<td colspan="3" align="center">
+					<input type="button" onclick="roll()" value="Roll Dice"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" onclick="check_all(this);"/>
+				</td>
+				<td align="center"><b>Rolls:</b></td>
+				<td align="center"><b>Scoring</b></td>
+			</tr>
+			<tr>
+				<td align="right">
+					<input type="checkbox" id="Check1"/>
+				</td>
+				<td>
+					<input type="text" id="Die1" value="0"/>
+				</td>
+				<td rowspan="7">
+					<textarea id="scores">0</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="Check2"/>
+				</td>
+				<td>
+					<input type="text" id="Die2" value="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="Check3"/>
+				<td>
+					<input type="text" id="Die3" value="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="Check4"/>
+				</td>
+				<td>
+					<input type="text" id="Die4" value="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="Check5"/>
+				</td>
+				<td>
+					<input type="text" id="Die5" value="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="Check6"/>
+				</td>
+				<td>
+					<input type="text" id="Die6" value="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" onclick="scoreit()" value="Score Dice"/>
+				</td>
+			</tr>
+		</table>
+		<input type="button" onclick="testit()" value="Test It"/>
+	</body>
+</html>

@@ -12,15 +12,17 @@ function scoreit() {
     for (let x=1;x<=6;x++) {
         let chkid = "Check"+x;
         let boxid = "Die"+x;
+        if (document.getElementById(chkid).disabled) {continue;}
+        let die_value = document.getElementById(boxid).value;
         if (document.getElementById(chkid).checked) {
-            let die_value = document.getElementById(boxid).value
             scoring_dice.push(die_value);
+            document.getElementById(chkid).disabled = true;
         }
     }
     let lines = document.getElementById("scores").value.split("\n");
     let [round_score, matched_dice] =  get_score(scoring_dice);
     let total_score = lines[lines.length-1] + round_score;
-    console.log(`${round_score} :: ${matched_dice}`)
+    console.log(`Score: ${round_score}`);
 }
 
 function is_straight(scoring_dice) {
@@ -29,7 +31,7 @@ function is_straight(scoring_dice) {
     }
     for (let x=6;x>0;x--) {
         const found = count_items(scoring_dice,x);
-        if (found > 1) {
+        if ((found > 1) || (found == 0)) {
             return [false,[],0];
         }
     }
@@ -166,7 +168,7 @@ function is_single(scoring_dice) {
     single_score += found * 100;
     found = count_items(scoring_dice,5);
     single_score += found * 50;
-    return single_score;
+    return [true,scoring_dice,single_score];
 }
 
 function get_score(scoring_dice) {

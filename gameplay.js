@@ -1,5 +1,3 @@
-var fresh_roll = true;
-
 function roll() {
     for (let x=1;x<=6;x++) {
         var boxid = `Die${x}`;

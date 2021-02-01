@@ -23,6 +23,7 @@ function scoreit() {
     let [round_score, matched_dice] =  get_score(scoring_dice);
     let total_score = lines[lines.length-1] + round_score;
     console.log(`Score: ${round_score}`);
+    show_score(round_score);
 }
 
 function is_straight(scoring_dice) {
@@ -151,12 +152,13 @@ function is_one_trip(scoring_dice) {
     }
     for (let x=6;x>0;x--) {
         const found = count_items(scoring_dice,x);
-        console.log(`${x} :: ${found}`);
         if (found == 3) {
             if (x == 1) {
-                return [true,scoring_dice,300];
+                score = 300+is_single(scoring_dice)[2];
+                return [true,scoring_dice,score];
             }
-            return [true,scoring_dice,(x*100)];
+            score = (x*100)+is_single(scoring_dice)[2];
+            return [true,scoring_dice,score];
         }
     }
     return [false,[],0];
@@ -165,9 +167,9 @@ function is_one_trip(scoring_dice) {
 function is_single(scoring_dice) {
     let single_score = 0;
     let found = count_items(scoring_dice,1);
-    single_score += found * 100;
+    if (found < 3) {single_score += found * 100;}
     found = count_items(scoring_dice,5);
-    single_score += found * 50;
+    if (found < 3) {single_score += found * 50;}
     return [true,scoring_dice,single_score];
 }
 
@@ -207,9 +209,8 @@ function get_score(scoring_dice) {
 
 
 function show_score(score) {
-    curr_scores = document.getElementById("scores").value;
-    total_score = 0;
-    if (length(curr_scores) > 0) {
-        
-    }
+    curr_scores = document.getElementById("scores").value.split('\n');
+    last_score = parseInt(curr_scores[curr_scores.length-1]);
+    total_score = last_score + score;
+    document.getElementById("scores").value += `\n${score}\n${total_score}`;
 }
